@@ -1,40 +1,28 @@
-#include<iostream>
-
+#include <iostream>
+#include <vector>
 using namespace std;
 
-void selectionSort(int arr[], int n) {
-
-	for (int i = 1; i <= n - 1; i++) {
-
-		// in the ith pass, place the smallest
-		// value in the unsorted part of the
-		// arr[] to its correct position i.e. idx i-1
-
-		int minIdx = i - 1;
-		for (int j = i; j < n; j++) {
-			if (arr[j] < arr[minIdx]) {
-				minIdx = j;
-			}
-		}
-
-		swap(arr[minIdx], arr[i - 1]);
-
-	}
-
-}
-
 int main() {
+    
+    vector<int> v = {5, 2, 4, 1,3};
 
-	int arr[] = {50, 40, 30, 20, 10};
-	int n = sizeof(arr) / sizeof(int);
+    for (int i = 0; i < v.size() - 1; i++) {
+        int minIndex = i;
 
-	selectionSort(arr, n);
+        // Find the smallest value in the unsorted part
+        for (int j = i + 1; j < v.size(); j++) {
+            if (v[j] < v[minIndex]) {
+                minIndex = j;
+            }
+        }
 
-	for (int i = 0; i < n; i++) {
-		cout << arr[i] << " ";
-	}
+        // Put that smallest value at position i
+        swap(v[i], v[minIndex]);
+    }
 
-	cout << endl;
+    for (int value : v) {
+        cout << value << " ";
+    }
 
-	return 0;
+    return 0;
 }
